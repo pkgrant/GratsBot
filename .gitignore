@@ -1,0 +1,13 @@
+### Project ###
+.idea
+*.iml
+
+### Build ###
+*.class
+build
+
+### Initial test class for com.maphus.kafa.API endpoints ###
+*Tester.java
+
+### Gradle is too volatile, muddies changes ###
+.gradle
