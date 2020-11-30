@@ -1,0 +1,3 @@
+rootProject.name = 'GratsBot'
+include 'Kafa'
+
