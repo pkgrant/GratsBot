@@ -16,6 +16,7 @@ import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.channel.VoiceChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.voice.AudioProvider;
+import io.github.cdimascio.dotenv.Dotenv;
 import io.netty.util.internal.shaded.org.jctools.queues.MessagePassingQueue;
 
 import java.util.*;
@@ -26,8 +27,13 @@ public class GratsBot {
 
     public static void main(String[] args) {
 
+        Dotenv dotenv = Dotenv.load();
+        final String blizzId = dotenv.get("BLIZZ_CLIENT_ID");
+        final String blizzSecret = dotenv.get("BLIZZ_CLIENT_SECRET");
+        final String discordToken = dotenv.get("DISC_TOKEN");
+
         // Get our token from blizzard API
-        Token blizzToken = Authorization.generateToken(args[1], args[2]);
+        Token blizzToken = Authorization.generateToken(blizzId, blizzSecret);
 
         // Setup audio
         // Creates AudioPlayer instances and translates URLs to AudioTrack instances
@@ -94,7 +100,6 @@ public class GratsBot {
         });
 
         // Build the Discord Client
-        final String discordToken = args[0];
         final DiscordClient client = DiscordClient.create(discordToken);
         final GatewayDiscordClient gateway = client.login().block();
 

@@ -11,3 +11,6 @@ build
 
 ### Gradle is too volatile, muddies changes ###
 .gradle
+
+### Environment variables i.e. tokens
+.env
